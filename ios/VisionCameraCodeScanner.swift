@@ -107,7 +107,7 @@ class VisionCameraCodeScanner: NSObject, FrameProcessorPluginBase {
         map["rawValue"] = barcode.rawValue
         map["content"] = self.convertContent(barcode: barcode)
         map["format"] = barcode.format.rawValue
-        map["rawDataHex"] = barcode.rawData.map { String(format: "%02hhx", $0) }.joined()
+        map["rawDataBytes"] = barcode.rawData
         return map
     }
     
