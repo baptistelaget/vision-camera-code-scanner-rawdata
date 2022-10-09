@@ -211,6 +211,15 @@ public class VisionCameraCodeScannerPlugin extends FrameProcessorPlugin {
       map.putString("rawValue", rawValue);
     }
 
+    byte[] rawData = barcode.getRawBytes();
+    StrinBuilder rawDataString = new StringBuilder();
+    if (rawData != null) {
+      for (byte b : rawData) {
+        rawDataString.append(String.format("%02x", b));
+      }
+      map.putString("rawDataHex", rawDataString.toString());
+    }
+
     map.putMap("content", convertContent(barcode));
     map.putInt("format", barcode.getFormat());
 

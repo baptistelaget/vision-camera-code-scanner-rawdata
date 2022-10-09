@@ -236,6 +236,7 @@ export type Barcode = {
   cornerPoints?: Point[];
   displayValue?: string;
   rawValue?: string;
+  rawDataHex?: string;
   format: BarcodeFormat;
   content:
     | {
