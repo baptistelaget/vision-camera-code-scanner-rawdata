@@ -1,11 +1,18 @@
 import MLKitBarcodeScanning
 import MLKitVision
 
+extension Data {
+    func hexEncodedString() -> String {
+        return map { String(format: "%02hhx", $0) }.joined()
+    }
+}
+
 @objc(VisionCameraCodeScanner)
 class VisionCameraCodeScanner: NSObject, FrameProcessorPluginBase {
     
     static var barcodeScanner: BarcodeScanner?
     static var barcodeFormatOptionSet: BarcodeFormat = []
+    
     
     @objc
     public static func callback(_ frame: Frame!, withArgs args: [Any]!) -> Any! {
@@ -107,7 +114,7 @@ class VisionCameraCodeScanner: NSObject, FrameProcessorPluginBase {
         map["rawValue"] = barcode.rawValue
         map["content"] = self.convertContent(barcode: barcode)
         map["format"] = barcode.format.rawValue
-        map["rawDataBytes"] = barcode.rawData
+        map["rawDataHex"] = barcode.rawData?.hexEncodedString()
         return map
     }
     
