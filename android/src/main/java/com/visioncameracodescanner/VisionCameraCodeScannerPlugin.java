@@ -212,7 +212,7 @@ public class VisionCameraCodeScannerPlugin extends FrameProcessorPlugin {
     }
 
     byte[] rawData = barcode.getRawBytes();
-    StrinBuilder rawDataString = new StringBuilder();
+    StringBuilder rawDataString = new StringBuilder();
     if (rawData != null) {
       for (byte b : rawData) {
         rawDataString.append(String.format("%02x", b));
